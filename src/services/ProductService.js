@@ -9,3 +9,15 @@ export const getProducts = () => {
 export const getCategories = () => {
   return axios.get(`${BASE_URL}/category`);
 };
+
+export const deleteProduct = (id) => {
+  return axios.delete(`${BASE_URL}/product/${id}`);
+};
+
+export const createProduct = (product) => {
+  return axios.post(`${BASE_URL}/product`, product);
+};
+
+export const updateProduct = (id, product) => {
+  return axios.put(`${BASE_URL}/product/${id}`, product);
+};
