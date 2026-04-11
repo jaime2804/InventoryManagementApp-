@@ -6,10 +6,6 @@ export const getProducts = () => {
   return axios.get(`${BASE_URL}/product`);
 };
 
-export const getCategories = () => {
-  return axios.get(`${BASE_URL}/category`);
-};
-
 export const deleteProduct = (id) => {
   return axios.delete(`${BASE_URL}/product/${id}`);
 };
