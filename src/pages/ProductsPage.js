@@ -6,9 +6,9 @@ import EditProductModal from '../components/EditProductModal';
 import { getProducts, createProduct, deleteProduct, updateProduct } from '../services/productService';
 import { getCategories } from '../services/categoryService';
 
-function ProductsPage () {
+function ProductsPage() {
 
- const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState([]);
 
   const [showModal, setShowModal] = useState(false);
 
@@ -36,7 +36,6 @@ function ProductsPage () {
 
     createProduct(FormData)
       .then(response => {
-        console.log(response.data)
         setProducts([...products, response.data]);
       })
       .catch(error => {
@@ -125,16 +124,11 @@ function ProductsPage () {
           <option key={category.id} value={category.name}> {category.name} </option>
         ))}
       </select>
-      <CreateProduct onSubmit={handleSubmit}> </CreateProduct>
+    
       <p>Showing {filteredProductsAndCategories.length} of {products.length}</p>
 
       <button name='Reset Filters' onClick={() => { setSearch(""); setSelectedCategorie(""); }}>
         Reset Filters
-      </button>
-
-
-      <button onClick={() => { setProducts([...products, { id: products.length + 1, name: "Monitor", price: 300, stock: 20, category: "Electronics" }]); }}>
-        Agregar un nuevo producto
       </button>
 
       {showModal && selectedProduct && (
@@ -145,10 +139,10 @@ function ProductsPage () {
         />
       )}
 
-
+<CreateProduct onSubmit={handleSubmit} categories={categories} />
     </div>
   );
-   
+
 }
 
 export default ProductsPage;

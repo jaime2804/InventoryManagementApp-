@@ -73,12 +73,14 @@ function CategoryPage() {
                 <input
                     type="text"
                     name="name"
+                    placeholder="Category name"
                     value={formData.name}
-                    onChange={handleChange}
+                    onChange={handleChange}  
                 />
                 <input
                     type="text"
                     name="description"
+                    placeholder="Category description"
                     value={formData.description}
                     onChange={handleChange}
                 />
