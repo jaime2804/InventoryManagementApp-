@@ -15,9 +15,9 @@ function Navbar() {
 
   return (
     <nav style={{ backgroundColor: '#333', padding: '10px 20px', display: 'flex', gap: '20px' }}>
-      <Link to="/" style={{ color: 'white', textDecoration: 'none' }}>Products</Link>
+      <Link to="/products" style={{ color: 'white', textDecoration: 'none' }}>Products</Link>
       <Link to="/categories" style={{ color: 'white', textDecoration: 'none' }}>Categories</Link>
-      <Link to="/movement" style={{ color: 'white', textDecoration: 'none' }}>Movement</Link>
+      <Link to="/movements" style={{ color: 'white', textDecoration: 'none' }}>Movement</Link>
       <button onClick={handleLogout}>Logout</button>
     </nav>
   );

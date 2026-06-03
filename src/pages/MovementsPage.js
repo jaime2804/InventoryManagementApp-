@@ -112,6 +112,31 @@ function MovementsPage() {
 
             </form>
 
+            <table>
+                <thead>
+                    <tr>
+                        <th>Type</th>
+                        <th>Product</th>
+                        <th>Quantity</th>
+                        <th>Description</th>
+                        <th>User</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {movements.map(movement => (
+                        <tr key={movement.id}>
+                            <td>{movement.type}</td>
+                            <td>{movement.productName}</td>
+                            <td>{movement.quantity}</td>
+                            <td>{movement.description}</td>
+                            <td>{movement.userName}</td>
+                            <td>{new Date(movement.createdAt).toLocaleDateString()}</td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+
         </div>
     );
 
