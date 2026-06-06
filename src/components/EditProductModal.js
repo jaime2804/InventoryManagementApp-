@@ -19,18 +19,25 @@ function EditProductModal(props) {
         });
     };
 
- return (
-        <div style={{position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(0,0,0,0.5)', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-            <div style={{backgroundColor: 'white', padding: '30px', borderRadius: '8px', width: '400px'}}>
-                <h2>Edit Product</h2>
-                <form onSubmit={(e) => { e.preventDefault(); props.onSave(formData); }}>
-                    <input type="text" name="name" value={formData.name} onChange={handleChange} /><br/>
-                    <input type="text" name="description" value={formData.description} onChange={handleChange} /><br/>
-                    <input type="number" name="price" value={formData.price} onChange={handleChange} /><br/>
-                    <input type="number" name="stock" value={formData.stock} onChange={handleChange} /><br/>
-                    <input type="number" name="categoryId" value={formData.categoryId} onChange={handleChange} /><br/>
-                    <button type="submit">Save</button>
-                    <button type="button" onClick={props.onClose}>Cancel</button>
+    return (
+        <div className="fixed inset-0 bg-black bg-opacity-60 flex justify-center items-center z-50">
+            <div className="bg-gray-800 rounded-lg p-8 w-full max-w-md shadow-xl">
+                <h2 className="text-white text-xl font-bold mb-6">Edit Product</h2>
+                <form onSubmit={(e) => { e.preventDefault(); props.onSave(formData); }} className="flex flex-col gap-4">
+                    <input type="text" name="name" value={formData.name} onChange={handleChange}
+                        className="bg-gray-700 text-white rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Name" />
+                    <input type="text" name="description" value={formData.description} onChange={handleChange}
+                        className="bg-gray-700 text-white rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Description" />
+                    <input type="number" name="price" value={formData.price} onChange={handleChange}
+                        className="bg-gray-700 text-white rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Price" />
+                    <input type="number" name="stock" value={formData.stock} onChange={handleChange}
+                        className="bg-gray-700 text-white rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Stock" />
+                    <input type="number" name="categoryId" value={formData.categoryId} onChange={handleChange}
+                        className="bg-gray-700 text-white rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Category ID" />
+                    <div className="flex gap-3 mt-2">
+                        <button type="submit" className="flex-1 bg-blue-600 text-white py-2 rounded hover:bg-blue-700 font-medium">Save</button>
+                        <button type="button" onClick={props.onClose} className="flex-1 bg-gray-600 text-white py-2 rounded hover:bg-gray-500">Cancel</button>
+                    </div>
                 </form>
             </div>
         </div>

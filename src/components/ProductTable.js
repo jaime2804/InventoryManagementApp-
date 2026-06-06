@@ -7,46 +7,60 @@ function ProductTable(props) {
     const [isVisible, setIsVisible] = useState(true);
 
     return (
-        <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <button onClick={() => setIsVisible(!isVisible)}>
+        <div className="mb-6">
+            <button
+                onClick={() => setIsVisible(!isVisible)}
+                className="mb-4 bg-gray-200 text-gray-700 px-4 py-2 rounded hover:bg-gray-300"
+            >
                 {isVisible ? "Hide Table" : "Show Table"}
             </button>
             {isVisible &&
-                <table style={{ margin: '0 auto', borderCollapse: 'collapse', width: '80%' }}>
-                    <thead>
-                        <tr>
-                            <th style={{ padding: '8px 16px', borderBottom: '1px solid #ccc' }}>Name</th>
-                            <th style={{ padding: '8px 16px', borderBottom: '1px solid #ccc' }}>Price</th>
-                            <th style={{ padding: '8px 16px', borderBottom: '1px solid #ccc' }}>Stock</th>
-                            <th style={{ padding: '8px 16px', borderBottom: '1px solid #ccc' }}>Category</th>
-                            <th style={{ padding: '8px 16px', borderBottom: '1px solid #ccc' }}>Status</th>
-                            <th style={{ padding: '8px 16px', borderBottom: '1px solid #ccc' }}>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {props.products.map(product => (
-                            <tr key={product.id}>
-                                <td style={{ padding: '8px 16px', borderBottom: '1px solid #ccc' }}>{product.name}</td>
-                                <td style={{ padding: '8px 16px', borderBottom: '1px solid #ccc' }}>{product.price}</td>
-                                <td style={{ padding: '8px 16px', borderBottom: '1px solid #ccc' }}>{product.stock}</td>
-                                <td style={{ padding: '8px 16px', borderBottom: '1px solid #ccc' }}>{product.categoryName}</td>
-                                <td style={{ padding: '8px 16px', borderBottom: '1px solid #ccc' }}>{product.stock < 15
-                                    ? <span style={{ color: 'red' }}>Low stock</span>
-                                    : <span style={{ color: 'green' }}>OK</span>
-                                }</td>
-                                <td style={{ padding: '8px 16px', borderBottom: '1px solid #ccc' }}>{<button onClick={() => props.onDelete(product.id)}>
-                                    Delete
-                                </button>}</td>
-                                 <td style={{ padding: '8px 8px', borderBottom: '1px solid #ccc' }}>{<button onClick={() => props.onEdit(product)}>
-                                    Edit
-                                </button>}</td>
+                <div className="bg-white rounded-lg shadow overflow-hidden">
+                    <table className="w-full">
+                        <thead className="bg-gray-50 border-b border-gray-200">
+                            <tr>
+                                <th className="px-6 py-3 text-left text-sm font-semibold text-gray-600">Name</th>
+                                <th className="px-6 py-3 text-left text-sm font-semibold text-gray-600">Price</th>
+                                <th className="px-6 py-3 text-left text-sm font-semibold text-gray-600">Stock</th>
+                                <th className="px-6 py-3 text-left text-sm font-semibold text-gray-600">Category</th>
+                                <th className="px-6 py-3 text-left text-sm font-semibold text-gray-600">Status</th>
+                                <th className="px-6 py-3 text-left text-sm font-semibold text-gray-600">Actions</th>
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody className="divide-y divide-gray-200">
+                            {props.products.map(product => (
+                                <tr key={product.id} className="hover:bg-gray-50">
+                                    <td className="px-6 py-4 text-sm text-gray-800">{product.name}</td>
+                                    <td className="px-6 py-4 text-sm text-gray-800">{product.price}</td>
+                                    <td className="px-6 py-4 text-sm text-gray-800">{product.stock}</td>
+                                    <td className="px-6 py-4 text-sm text-gray-800">{product.categoryName}</td>
+                                    <td className="px-6 py-4 text-sm">
+                                        {product.stock < 15
+                                            ? <span className="text-red-500 font-medium">Low stock</span>
+                                            : <span className="text-green-500 font-medium">OK</span>
+                                        }
+                                    </td>
+                                    <td className="px-6 py-4 text-sm flex gap-2">
+                                        <button
+                                            onClick={() => props.onDelete(product.id)}
+                                            className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
+                                        >
+                                            Delete
+                                        </button>
+                                        <button
+                                            onClick={() => props.onEdit(product)}
+                                            className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600"
+                                        >
+                                            Edit
+                                        </button>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
             }
         </div>
-
     )
 }
 
