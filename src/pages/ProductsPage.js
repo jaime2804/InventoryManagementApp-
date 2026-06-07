@@ -104,20 +104,15 @@ function ProductsPage() {
 
   return (
     <div className="p-6 bg-gray-900 min-h-screen">
-      <h1 className="text-3xl font-bold text-white mb-6">Inventory Management</h1>
-
-      <button
-        onClick={() => setShowCreateModal(true)}
-        className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 font-medium"
-      >
-        + Add Product
-      </button>
+      <div className="flex justify-between items-center mb-6">
+        <h1 className="text-3xl font-bold text-white">Inventory Management</h1>
+      </div>
 
 
       <StatsBar totalProducts={products.length}
         totalStock={products.reduce((total, product) => total + product.stock, 0)}
         lowStock={products.filter(product => product.stock < 15).length} />
-      <ProductTable products={filteredProductsAndCategories} onDelete={handleDelete} onEdit={handleEdit} />
+      <ProductTable products={filteredProductsAndCategories} onDelete={handleDelete} onEdit={handleEdit}  onAdd={() => setShowCreateModal(true)} />
       <div className="flex gap-4 mb-6">
         <input
           type="text"
