@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { getMovements, createMovement } from '../services/movementService';
 import { getProducts } from "../services/productService";
+import { motion } from 'framer-motion';
 
 
 function MovementsPage() {
@@ -9,6 +10,9 @@ function MovementsPage() {
     const [movements, setMovements] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+
+
+
 
     const [formData, setFormData] = useState({
         type: '',
@@ -67,7 +71,12 @@ function MovementsPage() {
     if (error) return <h2 className="text-red-500 p-6">{error}</h2>;
 
     return (
-        <div className="p-6 bg-gray-900 min-h-screen">
+        <motion.div
+            className="p-6 bg-gray-900 min-h-screen"
+            initial={{ x: 20, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.25, ease: "easeOut" }}
+        >
             <h1 className="text-3xl font-bold text-white mb-6">Movements</h1>
 
             <div className="bg-gray-800 rounded-lg shadow p-6 mb-6">
@@ -127,7 +136,7 @@ function MovementsPage() {
                     </tbody>
                 </table>
             </div>
-        </div>
+        </motion.div>
     );
 }
 

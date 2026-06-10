@@ -5,6 +5,8 @@ import CreateProductModal from '../components/CreateProductModal';
 import EditProductModal from '../components/EditProductModal';
 import { getProducts, createProduct, deleteProduct, updateProduct } from '../services/productService';
 import { getCategories } from '../services/categoryService';
+import { motion } from 'framer-motion';
+
 
 function ProductsPage() {
 
@@ -15,6 +17,7 @@ function ProductsPage() {
   const [showCreateModal, setShowCreateModal] = useState(false);
 
   const [selectedProduct, setSelectedProduct] = useState(null);
+
 
 
   const handleEdit = (product) => {
@@ -103,7 +106,12 @@ function ProductsPage() {
   if (error) return <h2 style={{ color: 'red' }}> {error} </h2>;
 
   return (
-    <div className="p-6 bg-gray-900 min-h-screen">
+    <motion.div
+      className="p-6 bg-gray-900 min-h-screen"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.4 }}
+    >
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-3xl font-bold text-white">Inventory Management</h1>
       </div>
@@ -112,19 +120,19 @@ function ProductsPage() {
       <StatsBar totalProducts={products.length}
         totalStock={products.reduce((total, product) => total + product.stock, 0)}
         lowStock={products.filter(product => product.stock < 15).length} />
-      <ProductTable products={filteredProductsAndCategories} onDelete={handleDelete} onEdit={handleEdit}  onAdd={() => setShowCreateModal(true)} />
-      <div className="flex gap-4 mb-6">
+      <ProductTable products={filteredProductsAndCategories} onDelete={handleDelete} onEdit={handleEdit} onAdd={() => setShowCreateModal(true)} />
+      <div className="flex items-center justify-start gap-3 mb-4">
         <input
           type="text"
           placeholder="Search products..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="border border-gray-300 rounded px-4 py-2 w-64 focus:outline-none focus:border-blue-500"
+          className="bg-gray-800 text-gray-300 text-sm rounded-lg px-4 py-2 w-48 focus:outline-none focus:ring-1 focus:ring-blue-500 border border-gray-700"
         />
         <select
           value={selectedCategorie}
           onChange={(e) => setSelectedCategorie(e.target.value)}
-          className="border border-gray-300 rounded px-4 py-2 focus:outline-none focus:border-blue-500"
+          className="bg-gray-800 text-gray-300 text-sm rounded-lg px-4 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500 border border-gray-700"
         >
           <option value="">All Categories</option>
           {categories.map(category => (
@@ -133,13 +141,13 @@ function ProductsPage() {
         </select>
         <button
           onClick={() => { setSearch(""); setSelectedCategorie(""); }}
-          className="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600"
+          className="text-gray-400 text-sm hover:text-white px-3 py-2 rounded-lg hover:bg-gray-700 border border-gray-700"
         >
-          Reset Filters
+          Reset
         </button>
-        <p className="ml-auto self-center text-gray-500 text-sm">
-          Showing {filteredProductsAndCategories.length} of {products.length}
-        </p>
+        <span className="text-gray-500 text-sm">
+          {filteredProductsAndCategories.length} of {products.length}
+        </span>
       </div>
 
       {showModal && selectedProduct && (
@@ -162,7 +170,7 @@ function ProductsPage() {
       )}
 
 
-    </div>
+    </motion.div>
   );
 
 }

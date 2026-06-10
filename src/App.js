@@ -8,14 +8,15 @@ import Sidebar from './components/Sidebar';
 import { AuthProvider } from './context/AuthContext';
 import PrivateRoute from './components/PrivateRoute';
 
+
 function Layout({ children }) {
   const location = useLocation();
   const isLogin = location.pathname === '/' || location.pathname === '/login';
 
   return (
-    <div className="flex">
+       <div className="flex">
       {!isLogin && <Sidebar />}
-      <div className="flex-1">
+      <div className="flex-1 bg-gray-900">
         {children}
       </div>
     </div>

@@ -1,10 +1,14 @@
 import { useEffect, useState } from "react";
 import { createCategory, getCategories } from '../services/categoryService';
+import { motion } from 'framer-motion';
+
 
 function CategoryPage() {
 
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+
+
 
     const [categories, setCategories] = useState([]);
     useEffect(() => {
@@ -50,7 +54,12 @@ function CategoryPage() {
     if (error) return <h2 className="text-red-500 p-6">{error}</h2>;
 
     return (
-        <div className="p-6 bg-gray-900 min-h-screen">
+        <motion.div
+            className="p-6 bg-gray-900 min-h-screen"
+            initial={{ x: 20, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.25, ease: "easeOut" }}
+        >
             <div className="flex justify-between items-center mb-6">
                 <h1 className="text-3xl font-bold text-white">Categories</h1>
             </div>
@@ -99,7 +108,7 @@ function CategoryPage() {
                     </button>
                 </form>
             </div>
-        </div>
+        </motion.div>
     );
 }
 
